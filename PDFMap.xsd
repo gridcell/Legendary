@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:element name="map">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="background" type="xs:string" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="size" type="sizeattributes" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="tempdir" type="xs:string" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="layer" type="layerattributes" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="size">
+		<xs:all>
+			<xs:element name="pageheight" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="pagewidth" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="layer">
+		<xs:sequence>
+			<xs:element name="line" type="lineattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="circle" type="circleattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="fillcircle" type="fillcircleattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="rectangle" type="rectangleattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="fillrectangle" type="fillrectangleattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="polygon" type="polygonattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="fillpolygon" type="fillpolygonattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="mapimage" type="mapimageattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="text" type="textattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="roundrectangle" type="roundrectangleattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="fillroundrectangle" type="fillroundrectangleattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ellipse" type="rectangleattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="fillellipse" type="fillrectangleattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="arc" type="rectangleattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="wedge" type="wedgeattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="fillwedge" type="fillwedgeattributes" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="zindex" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="lineattributes">
+		<xs:all>
+			<xs:element name="startx" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="starty" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="endx" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="endy" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="color" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="thickness" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="circle">
+		<xs:all>
+			<xs:element name="startx" type="xs:integer"/>
+			<xs:element name="starty" type="xs:integer"/>
+			<xs:element name="radius" type="xs:integer"/>
+			<xs:element name="color" type="xs:string"/>
+			<xs:element name="thickness" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="fillcircle">
+		<xs:all>
+			<xs:element name="startx" type="xs:integer"/>
+			<xs:element name="starty" type="xs:integer"/>
+			<xs:element name="radius" type="xs:integer"/>
+			<xs:element name="strokecolor" type="xs:string"/>
+			<xs:element name="fillcolor" type="xs:string"/>
+			<xs:element name="thickness" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="rectangle">
+		<xs:all>
+			<xs:element name="startx" type="xs:integer"/>
+			<xs:element name="starty" type="xs:integer"/>
+			<xs:element name="endx" type="xs:integer"/>
+			<xs:element name="endy" type="xs:integer"/>
+			<xs:element name="color" type="xs:string"/>
+			<xs:element name="thickness" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="fillrectangle">
+		<xs:all>
+			<xs:element name="startx" type="xs:integer"/>
+			<xs:element name="starty" type="xs:integer"/>
+			<xs:element name="endx" type="xs:integer"/>
+			<xs:element name="endy" type="xs:integer"/>
+			<xs:element name="strokecolor" type="xs:string"/>
+			<xs:element name="fillcolor" type="xs:string"/>
+			<xs:element name="stroke" type="xs:integer"/>
+			<xs:element name="thickness" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="polygon">
+		<xs:all>
+			<xs:element name="xlist" type="xs:string"/>
+			<xs:element name="ylist" type="xs:string"/>
+			<xs:element name="color" type="xs:string"/>
+			<xs:element name="thickness" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="fillpolygon">
+		<xs:all>
+			<xs:element name="xlist" type="xs:string"/>
+			<xs:element name="ylist" type="xs:string"/>
+			<xs:element name="strokecolor" type="xs:string"/>
+			<xs:element name="fillcolor" type="xs:string"/>
+			<xs:element name="thickness" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="mapimage">
+		<xs:all>
+			<xs:element name="path" type="xs:string"/>
+			<xs:element name="startx" type="xs:integer"/>
+			<xs:element name="starty" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="text">
+		<xs:all>
+			<xs:element name="string" type="xs:string"/>
+			<xs:element name="startx" type="xs:integer"/>
+			<xs:element name="starty" type="xs:integer"/>
+			<xs:element name="width" type="xs:integer"/>
+			<xs:element name="height" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="roundrectangle">
+		<xs:all>
+			<xs:element name="startx" type="xs:integer"/>
+			<xs:element name="starty" type="xs:integer"/>
+			<xs:element name="endx" type="xs:integer"/>
+			<xs:element name="endy" type="xs:integer"/>
+			<xs:element name="radius" type="xs:integer"/>
+			<xs:element name="color" type="xs:string"/>
+			<xs:element name="thickness" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="fillroundrectangle">
+		<xs:all>
+			<xs:element name="startx" type="xs:integer"/>
+			<xs:element name="starty" type="xs:integer"/>
+			<xs:element name="endx" type="xs:integer"/>
+			<xs:element name="endy" type="xs:integer"/>
+			<xs:element name="radius" type="xs:integer"/>
+			<xs:element name="strokecolor" type="xs:string"/>
+			<xs:element name="fillcolor" type="xs:string"/>
+			<xs:element name="thickness" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="wedgeattributes">
+		<xs:all>
+			<xs:element name="startx" type="xs:integer"/>
+			<xs:element name="starty" type="xs:integer"/>
+			<xs:element name="endx" type="xs:integer"/>
+			<xs:element name="endy" type="xs:integer"/>
+			<xs:element name="angle" type="xs:integer"/>
+			<xs:element name="extent" type="xs:integer"/>
+			<xs:element name="color" type="xs:string"/>
+			<xs:element name="thickness" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="fillwedgeattributes">
+		<xs:all>
+			<xs:element name="startx" type="xs:integer"/>
+			<xs:element name="starty" type="xs:integer"/>
+			<xs:element name="endx" type="xs:integer"/>
+			<xs:element name="endy" type="xs:integer"/>
+			<xs:element name="angle" type="xs:integer"/>
+			<xs:element name="extent" type="xs:integer"/>
+			<xs:element name="strokecolor" type="xs:string"/>
+			<xs:element name="fillcolor" type="xs:string"/>
+			<xs:element name="thickness" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>
+

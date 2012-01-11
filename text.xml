@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<map>
+	<tempdir>./</tempdir>
+	<size>
+		<pagewidth>8.5</pagewidth>
+		<pageheight>11</pageheight>
+	</size>
+	<background>#ffffff</background>
+	<layer>
+		<zindex>0</zindex>
+		<polygon>
+			<xlist>90,15,30,200,25,20,15,10 </xlist>
+			<ylist>90,15,20,30,25,20,15,10 </ylist>
+			<color>#ff0000</color>
+			<thickness>2</thickness>
+		</polygon>
+		<fillpolygon>
+			<xlist>80,100,120,100,10</xlist>
+			<ylist>80,10,100,130,50</ylist>
+			<strokecolor>#00ff00</strokecolor>
+			<fillcolor>#ff0000</fillcolor>
+			<thickness>2</thickness>
+		</fillpolygon> 
+		<text>
+			<startx>100</startx>
+			<starty>70</starty>
+			<height>150</height>
+			<width>150</width>
+			<fontsize>11</fontsize>
+			<string>All work and no play makes <b>jack a dull boy.</b> All work and no play <i>makes jack a dull boy. All work</i> and no play makes jack a dull boy. All work and no play makes jack a dull boy.
+			</string>
+        </text>
+	</layer>
+</map>
+
+

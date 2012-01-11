@@ -1,0 +1,53 @@
+#!/usr/bin/python
+import sys, string, random, Image, ImageDraw
+from reportlab.lib.units import *
+from reportlab.platypus import Paragraph, Frame
+from reportlab.pdfgen.canvas import Canvas
+from xml.dom import minidom
+from PDFMap import MapObjectFactory, MapObject, Line
+
+if sys.argv.__len__() != 2:
+	print "Usage: mapxml2pdf </path/to/file.xml>"
+	exit(0)
+
+# convert from standard doc size in inches to pixels 
+def getDocSize(Node):
+	pageWidth = 72 * float(Node.getElementsByTagName("pagewidth")[0].childNodes[0].data)
+	pageHeight = 72 * float(Node.getElementsByTagName("pageheight")[0].childNodes[0].data)
+	return (pageWidth, pageHeight)
+
+try:
+	xmldoc = minidom.parse(sys.argv[1])
+except IOError:
+	print "Error opening XML file."
+
+filename = ''.join([random.choice(string.hexdigits) for i in range(8)]) + ".pdf"
+path = str(xmldoc.getElementsByTagName("tempdir")[0].childNodes[0].data)
+docsize = getDocSize(xmldoc.getElementsByTagName("size")[0])
+imgsize = ((docsize[0]- .5*inch),(docsize[1] - .5*inch))
+curZindex=0
+canvas = Canvas(path + "/" + filename, docsize)
+MOF = MapObjectFactory()
+layers = xmldoc.getElementsByTagName("layer")
+sortedLayers = minidom.NodeList()
+
+# Sorting Layers by zindex value
+while layers.length > 0:
+	for layer in layers:
+		zindex = (int)(layer.getElementsByTagName("zindex")[0].childNodes[0].data)
+		if zindex == curZindex:
+			sortedLayers.append(layer)
+			layers.remove(layer)
+	curZindex = curZindex+1
+
+# layers are now sorted by zindex. Draw Map Graphics in order of zindex
+for layer in sortedLayers:
+	for mapobject in layer.childNodes:
+		mo = MOF.createMapObject(mapobject)
+		mo.draw(canvas)
+try:
+	canvas.save()
+	print path + "/" + filename
+except IOError:
+	print "Failed to save PDF File"
+
